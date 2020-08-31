@@ -1,0 +1,14 @@
+.Body {
+  height: 1000px;
+  width: 100%;
+}
+
+h1 {
+  margin: 0 auto;
+  text-align: center;
+}
+
+.App {
+  margin: 0 auto;
+  text-align: center;
+}
