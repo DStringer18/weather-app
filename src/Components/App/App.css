@@ -1,11 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow:wght@200;300;400;500&display=swap');
+
 .Body {
   height: 1000px;
   width: 100%;
+  background-size: cover;
+  background-position: center;
+  font-family: 'Barlow', sans-serif;
+  color: rgb(202, 202, 202);
 }
 
 h1 {
   margin: 0 auto;
   text-align: center;
+  padding: 20px;
 }
 
 .App {

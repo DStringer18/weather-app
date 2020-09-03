@@ -11,27 +11,28 @@ function getSearchMethod(searchTerm) {
   }
 }
 
-/*function init(resultFromServer) {
-  console.log('weather type:', resultFromServer.list[0].weather[0].main);
-}*/
-
 const OpenWeather = {
   searchWeather(searchTerm) {
     getSearchMethod(searchTerm);
     //console.log('searchWeather is running...');
-    return fetch(`https://cors-anywhere.herokuapp.com/http://api.openweathermap.org/data/2.5/forecast?${searchMethod}=${searchTerm}&APPID=${apiKey}&units=${units}`).then(response => {
+    return fetch(`https://cors-anywhere.herokuapp.com/https://api.openweathermap.org/data/2.5/weather?${searchMethod}=${searchTerm}&APPID=${apiKey}&units=${units}`).then(response => {
       //console.log('result:', result)
       return response.json();
     }).then(jsonResponse => {
       //init(jsonResult);
       console.log('jsonResponse is:', jsonResponse)
-      return jsonResponse.list[0].weather[0].main
+      return ({
+        date: new Date((jsonResponse.dt*1000)).toLocaleString(),
+        weather: jsonResponse.weather[0].main,
+        temp: jsonResponse.main.temp,
+        humidity: jsonResponse.main.humidity, 
+      })
     }).catch((error) => {
       console.log(error);
     })
   }
 }
 
-//console.log(OpenWeather.searchWeather('prague'))
+console.log(OpenWeather.searchWeather('prague'))
 
 export default OpenWeather;

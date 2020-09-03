@@ -22,51 +22,53 @@ class App extends React.Component {
     this.changeBackground = this.changeBackground.bind(this);
   }
 
-  changeBackground(searchResults){     
-    console.log('change background to:', searchResults);   
+  changeBackground(searchResults) {
+    console.log('change background to:', searchResults);
     switch (searchResults) {
       case 'Clear':
-        this.setState({bgImage: `url(${clear})`});
+        this.setState({ bgImage: `url(${clear})` });
         break;
-    
+
       case 'Clouds':
-        this.setState({bgImage: `url(${cloudy})`});
+        this.setState({ bgImage: `url(${cloudy})` });
         break;
-      
+
       case 'Rain':
       case 'Drizzle':
       case 'Mist':
-        this.setState({bgImage: `url(${rain})`});
+        this.setState({ bgImage: `url(${rain})` });
         break;
-      
+
       case 'Thunderstorm':
-        this.setState({bgImage: `url(${storm})`});
+        this.setState({ bgImage: `url(${storm})` });
         break;
-    
+
       case 'Snow':
-        this.setState({bgImage: `url(${snow})`});
+        this.setState({ bgImage: `url(${snow})` });
         break;
-      
+
       default:
         break;
     }
   }
 
-  search(term){
+  search(term) {
     OpenWeather.searchWeather(term).then(searchResults => {
       this.setState({ searchResults: searchResults })
       console.log('search:', searchResults);
-      this.changeBackground(searchResults)
+      this.changeBackground(searchResults.weather)
     })
   }
+
+
 
   render() {
     return (
       <div>
-        <body style={{backgroundImage: this.state.bgImage}} className="Body">
+        <body style={{ backgroundImage: this.state.bgImage }} className="Body">
           <h1>Weather App</h1>
           <div className="App">
-            <SearchBar onSearch={this.search}/>
+            <SearchBar onSearch={this.search} />
             <div className="day-container">
               <SearchResults searchResults={this.state.searchResults} />
             </div>
